@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Plan {
+  id            String   @id @default(uuid())
+  name          String   // ex: Vivo Controle 15GB
+  description   String?  // Opcional
+  price         Float    // ex: 55.00
+  dataAllowance Int      // Quantidade de Gigas (ex: 15)
+  planType      String   // PRE, CONTROLE ou POS
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
