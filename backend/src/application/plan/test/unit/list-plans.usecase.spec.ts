@@ -21,25 +21,28 @@ class MockPlanRepository implements PlanRepository {
   async findById(id: string): Promise<Plan | null> {
     return null;
   }
-  async create(plan: Partial<Plan>): Promise<Plan> {
+  async create(plan: Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>) {
     return null as any;
   }
 }
 
 describe('ListPlansUseCase', () => {
-  let useCase: ListPlansUseCase;
-  let repository: PlanRepository;
+  let sut: ListPlansUseCase;
+  let planRepositoryStub: PlanRepository;
 
   beforeEach(() => {
-    repository = new MockPlanRepository();
-    useCase = new ListPlansUseCase(repository);
+    planRepositoryStub = new MockPlanRepository();
+    sut = new ListPlansUseCase(planRepositoryStub);
   });
 
-  it('deve retornar uma lista de planos disponíveis', async () => {
-    const plans = await useCase.execute();
+  it('Should return a list of avaliable plans', async () => {
+    const findAllSpy = jest.spyOn(planRepositoryStub, 'findAll');
+
+    const plans = await sut.execute();
 
     expect(plans).toHaveLength(1);
     expect(plans[0].name).toBe('Vivo Controle 15GB');
     expect(plans[0].price).toBe(55.0);
+    expect(findAllSpy).toHaveBeenCalledTimes(1);
   });
 });
