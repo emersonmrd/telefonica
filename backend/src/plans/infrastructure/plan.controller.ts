@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { ListPlansUseCase } from '../../application/plan/list-plans.usecase';
+import { ListPlansUseCase } from '../application/usecases/list-plans.usecase';
 
 @Controller()
 export class PlanController {

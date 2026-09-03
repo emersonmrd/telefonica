@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { PlanRepository } from '../../domain/plan/plan.repository';
-import { PrismaAdapter } from '../database/prisma.adapter';
-import { Plan } from '../../domain/plan/plan.entity';
+import { PlanRepository } from '../../../../../plans/domain/repositories/plan.repository';
+import { PrismaAdapter } from '../../../../../shared/infrastructure/database/prisma/prisma.adapter';
+import { Plan } from '../../../../domain/entities/plan.entity';
+import { PlanModelMapper } from '../models/plan-model.mapper';
 
 @Injectable()
 export class PlanPrismaRepository implements PlanRepository {
   constructor(private readonly prisma: PrismaAdapter) {}
 
   async findAll(): Promise<Plan[]> {
-    return this.prisma.plan.findMany();
+    const models = await this.prisma.plan.findMany();
+    return models.map(PlanModelMapper.toEntity);
   }
 
   async findById(id: string): Promise<Plan | null> {
