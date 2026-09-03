@@ -14,12 +14,15 @@ export class PlanPrismaRepository implements PlanRepository {
   }
 
   async findById(id: string): Promise<Plan | null> {
-    return this.prisma.plan.findUnique({ where: { id } });
+    const model = await this.prisma.plan.findUnique({ where: { id } });
+    if (!model) return null;
+    return PlanModelMapper.toEntity(model);
   }
 
   async create(
     plan: Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Plan> {
-    return this.prisma.plan.create({ data: plan });
+    const model = await this.prisma.plan.create({ data: plan });
+    return PlanModelMapper.toEntity(model);
   }
 }
