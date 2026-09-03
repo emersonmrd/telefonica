@@ -1,5 +1,5 @@
-import { Plan } from '../../../../domain/plan/plan.entity';
-import { PlanRepository } from '../../../../domain/plan/plan.repository';
+import { Plan } from '../../../../domain/entities/plan.entity';
+import { PlanRepository } from '../../../../domain/repositories/plan.repository';
 import { ListPlansUseCase } from '../../list-plans.usecase';
 
 // Criando um Mock (banco de dados falso)

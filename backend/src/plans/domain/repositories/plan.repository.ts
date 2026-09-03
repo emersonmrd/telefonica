@@ -1,4 +1,4 @@
-import { Plan } from './plan.entity';
+import { Plan } from '../entities/plan.entity';
 
 export abstract class PlanRepository {
   abstract findAll(): Promise<Plan[]>;

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PlanModule } from './infra/plan/plan.module';
+import { PlanModule } from './plans/infrastructure/plan.module';
 
 @Module({
   imports: [PlanModule],
