@@ -9,7 +9,7 @@ datasource db {
 
 model Plan {
   id            String   @id @default(uuid())
-  name          String   // ex: Vivo Controle 15GB
+  name          String   @unique // ex: Vivo Controle 15GB
   description   String?  // Opcional
   price         Float    // ex: 55.00
   dataAllowance Int      // Quantidade de Gigas (ex: 15)

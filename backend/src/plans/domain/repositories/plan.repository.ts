@@ -6,4 +6,5 @@ export abstract class PlanRepository {
   abstract create(
     plan: Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Plan>;
+  abstract findByName(name: string): Promise<Plan | null>;
 }
