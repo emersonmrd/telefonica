@@ -25,4 +25,10 @@ export class PlanPrismaRepository implements PlanRepository {
     const model = await this.prisma.plan.create({ data: plan });
     return PlanModelMapper.toEntity(model);
   }
+
+  async findByName(name: string): Promise<Plan | null> {
+    const model = await this.prisma.plan.findUnique({ where: { name } });
+    if (!model) return null;
+    return PlanModelMapper.toEntity(model);
+  }
 }
