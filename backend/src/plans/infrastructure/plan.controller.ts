@@ -1,13 +1,27 @@
-import { Controller, Get, Post, Body, HttpCode } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  HttpCode,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ListPlansUseCase } from '../application/usecases/list-plans.usecase';
 import { CreatePlanUseCase } from '../application/usecases/create-plan.usecase';
 import { CreatePlanDto } from './dtos/create-plan.dto';
+import { UpdatePlanDto } from './dtos/update-plan-dto';
+import { DeletePlanUseCase } from '../application/usecases/delete-plan.usecase';
+import { UpdatePlanUseCase } from '../application/usecases/update-plan.usecase';
 
 @Controller()
 export class PlanController {
   constructor(
     private readonly listPlanUseCase: ListPlansUseCase,
     private readonly createPlanUseCase: CreatePlanUseCase,
+    private readonly updatePlanUseCase: UpdatePlanUseCase,
+    private readonly deletePlanUseCase: DeletePlanUseCase,
   ) {}
 
   @Get('/plans')
@@ -18,5 +32,19 @@ export class PlanController {
   @Post('/plans')
   async createPlan(@Body() createPlanDto: CreatePlanDto) {
     return this.createPlanUseCase.execute(createPlanDto);
+  }
+
+  @Patch('/plans/:id')
+  async updatePlan(
+    @Body() updatePlanDto: UpdatePlanDto,
+    @Param('id') id: string,
+  ) {
+    return this.updatePlanUseCase.execute( {id, ...updatePlanDto} );
+  }
+
+  @Delete('/plans/:id')
+  @HttpCode(204)
+  async deletePlan(@Param('id') id: string) {
+    return this.deletePlanUseCase.execute(id);
   }
 }

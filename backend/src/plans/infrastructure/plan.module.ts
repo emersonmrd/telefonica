@@ -5,6 +5,8 @@ import { PrismaAdapter } from '../../shared/infrastructure/database/prisma/prism
 import { ListPlansUseCase } from '../application/usecases/list-plans.usecase';
 import { PlanRepository } from '../domain/repositories/plan.repository';
 import { CreatePlanUseCase } from '../application/usecases/create-plan.usecase';
+import { UpdatePlanUseCase } from '../application/usecases/update-plan.usecase';
+import { DeletePlanUseCase } from '../application/usecases/delete-plan.usecase';
 
 @Module({
   controllers: [PlanController],
@@ -21,6 +23,17 @@ import { CreatePlanUseCase } from '../application/usecases/create-plan.usecase';
     {
       provide: CreatePlanUseCase,
       useFactory: (repo: PlanRepository) => new CreatePlanUseCase(repo),
+      inject: [PlanPrismaRepository],
+    },
+
+    {
+      provide: UpdatePlanUseCase,
+      useFactory: (repo: PlanRepository) => new UpdatePlanUseCase(repo),
+      inject: [PlanPrismaRepository],
+    },
+    {
+      provide: DeletePlanUseCase,
+      useFactory: (repo: PlanRepository) => new DeletePlanUseCase(repo),
       inject: [PlanPrismaRepository],
     },
   ],
