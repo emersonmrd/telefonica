@@ -9,7 +9,11 @@ describe('CreatePlan (e2e)', () => {
     app = await createTestApp();
   });
 
-  it('should return status 201 and a empty array', () => {
+  afterEach(async () => {
+    await app.close();
+  });
+
+  it('should create and return the plan with status 201', () => {
     return request(app.getHttpServer())
       .post('/plans')
       .send({
@@ -29,6 +33,31 @@ describe('CreatePlan (e2e)', () => {
   it('should return 400 Bad Request when sending invalid or empty data', () => {
     return request(app.getHttpServer()).post('/plans').send({}).expect(400);
   });
+
+  it('should return 400 when creating a plan with negative price', async () => {
+    const response = await request(app.getHttpServer()).post('/plans').send({
+      name: 'Plan A',
+      description: 'Plano A criado pelo teste end-to-end',
+      price: -50.0,
+      dataAllowance: 10,
+      planType: 'CONTROLE',
+    });
+
+    expect(response.status).toBe(400);
+  });
+  
+  it('should return 400 when creating a plan with invalid plan type', async () => {
+    const response = await request(app.getHttpServer()).post('/plans').send({
+      name: 'Plan A',
+      description: 'Plano A criado pelo teste end-to-end',
+      price: 50.0,
+      dataAllowance: 10,
+      planType: 'TIPO DE PLANO INVALIDO',
+    });
+
+    expect(response.status).toBe(400);
+  });
+  
 
   it('should return 409 Conflict if plan already exists', async () => {
     const planData = {

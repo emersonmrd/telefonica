@@ -14,4 +14,14 @@ export class PlanModelMapper {
       prismaPlan.updatedAt,
     );
   }
+
+  static toPrismaUpdateInput(plan: Plan) {
+    return {
+      name: plan.name,
+      description: plan.description,
+      price: plan.price,
+      dataAllowance: plan.dataAllowance,
+      planType: plan.planType,
+    };
+  }
 }

@@ -37,6 +37,6 @@ export class UpdatePlanDto {
 
   @IsOptional()
   @IsString()
-  @IsIn(['CONTROLE', 'POS', 'FIBRA'], { message: 'Tipo de plano inválido' })
+  @IsIn(['CONTROLE', 'POS', 'FIBRA','PRE'], { message: 'Tipo de plano inválido' })
   planType?: string;
 }

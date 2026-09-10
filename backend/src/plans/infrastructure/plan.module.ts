@@ -7,6 +7,7 @@ import { PlanRepository } from '../domain/repositories/plan.repository';
 import { CreatePlanUseCase } from '../application/usecases/create-plan.usecase';
 import { UpdatePlanUseCase } from '../application/usecases/update-plan.usecase';
 import { DeletePlanUseCase } from '../application/usecases/delete-plan.usecase';
+import { FindPlanByIdUseCase } from '../application/usecases/find-plan-by-id.usecase';
 
 @Module({
   controllers: [PlanController],
@@ -34,6 +35,12 @@ import { DeletePlanUseCase } from '../application/usecases/delete-plan.usecase';
     {
       provide: DeletePlanUseCase,
       useFactory: (repo: PlanRepository) => new DeletePlanUseCase(repo),
+      inject: [PlanPrismaRepository],
+    },
+
+    {
+      provide: FindPlanByIdUseCase,
+      useFactory: (repo: PlanRepository) => new FindPlanByIdUseCase(repo),
       inject: [PlanPrismaRepository],
     },
   ],

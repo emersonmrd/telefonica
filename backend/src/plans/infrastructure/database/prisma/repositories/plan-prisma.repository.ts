@@ -31,4 +31,19 @@ export class PlanPrismaRepository implements PlanRepository {
     if (!model) return null;
     return PlanModelMapper.toEntity(model);
   }
+
+  async update(
+    id: string,
+    data: Partial<Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>>,
+  ): Promise<Plan> {
+    const model = await this.prisma.plan.update({
+      where: { id },
+      data,
+    });
+    return PlanModelMapper.toEntity(model);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.plan.delete({ where: { id } });
+  }
 }
