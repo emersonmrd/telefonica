@@ -14,6 +14,7 @@ import { CreatePlanDto } from './dtos/create-plan.dto';
 import { UpdatePlanDto } from './dtos/update-plan-dto';
 import { DeletePlanUseCase } from '../application/usecases/delete-plan.usecase';
 import { UpdatePlanUseCase } from '../application/usecases/update-plan.usecase';
+import { FindPlanByIdUseCase } from '../application/usecases/find-plan-by-id.usecase';
 
 @Controller()
 export class PlanController {
@@ -22,11 +23,17 @@ export class PlanController {
     private readonly createPlanUseCase: CreatePlanUseCase,
     private readonly updatePlanUseCase: UpdatePlanUseCase,
     private readonly deletePlanUseCase: DeletePlanUseCase,
+    private readonly findByIdUseCase: FindPlanByIdUseCase,
   ) {}
 
   @Get('/plans')
   async listPlans() {
     return this.listPlanUseCase.execute();
+  }
+
+  @Get('/plans/:id')
+  async findPlanById(@Param('id') id: string) {
+    return this.findByIdUseCase.execute(id);
   }
 
   @Post('/plans')
@@ -39,7 +46,7 @@ export class PlanController {
     @Body() updatePlanDto: UpdatePlanDto,
     @Param('id') id: string,
   ) {
-    return this.updatePlanUseCase.execute( {id, ...updatePlanDto} );
+    return this.updatePlanUseCase.execute({ id, ...updatePlanDto });
   }
 
   @Delete('/plans/:id')
