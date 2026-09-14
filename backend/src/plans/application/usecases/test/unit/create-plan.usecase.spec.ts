@@ -22,7 +22,8 @@ describe('CreatePlanUseCase', () => {
           'Vivo Controle 15GB',
           null,
           55.0,
-          15, null,
+          15,
+          null,
           'CONTROLE',
           new Date(),
           new Date(),
@@ -38,7 +39,9 @@ describe('CreatePlanUseCase', () => {
     });
 
     await expect(spyFindByName).toHaveBeenCalledTimes(1);
-    await expect(promise).rejects.toBeInstanceOf(ConflictError);
+    await expect(promise).rejects.toThrow(
+      new ConflictError('Plan name already exists'),
+    );
   });
 
   it('Should create and return a new plan', async () => {
@@ -54,7 +57,8 @@ describe('CreatePlanUseCase', () => {
           'Vivo Controle 15GB',
           null,
           55.0,
-          15, null,
+          15,
+          null,
           'CONTROLE',
           new Date(),
           new Date(),

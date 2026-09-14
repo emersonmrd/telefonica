@@ -14,7 +14,7 @@ export class UpdatePlanUseCase {
     }
     if (input.name) {
       const existingPlanWithName: Plan | null =
-        await this.planRepository.findByName(input.name ?? '');
+        await this.planRepository.findByName(input.name);
       if (existingPlanWithName && existingPlanWithName.id !== input.id) {
         throw new ConflictError('Plan name already exists');
       }

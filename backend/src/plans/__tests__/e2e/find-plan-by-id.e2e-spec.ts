@@ -2,12 +2,14 @@ import { INestApplication } from '@nestjs/common';
 import { createTestApp } from '../../domain/testing/helpers/setup-e2e-app.helper';
 import request from 'supertest';
 
-
 describe('FindById (e2e)', () => {
   let app: INestApplication;
+  let token: string;
 
   beforeEach(async () => {
-    app = await createTestApp();
+    const setup = await createTestApp();
+    app = setup.app;
+    token = setup.generateAuthToken();
   });
 
   afterEach(async () => {
@@ -17,6 +19,7 @@ describe('FindById (e2e)', () => {
   it('should return an plan when a valid id is provided', async () => {
     const createResponse = await request(app.getHttpServer())
       .post('/plans')
+      .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'Plano E2E',
         description: 'Plano criado pelo teste end-to-end',

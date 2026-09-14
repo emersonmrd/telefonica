@@ -7,7 +7,9 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '../../users/infrastructure/guards/auth.guard';
 import { ListPlansUseCase } from '../application/usecases/list-plans.usecase';
 import { CreatePlanUseCase } from '../application/usecases/create-plan.usecase';
 import { CreatePlanDto } from './dtos/create-plan.dto';
@@ -17,6 +19,7 @@ import { UpdatePlanUseCase } from '../application/usecases/update-plan.usecase';
 import { FindPlanByIdUseCase } from '../application/usecases/find-plan-by-id.usecase';
 
 @Controller()
+@UseGuards(AuthGuard)
 export class PlanController {
   constructor(
     private readonly listPlanUseCase: ListPlansUseCase,

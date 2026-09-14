@@ -21,7 +21,7 @@ describe('UpdatePlanUseCase', () => {
 
     const promise = sut.execute(updateData);
 
-    await expect(promise).rejects.toBeInstanceOf(NotFoundError);
+    await expect(promise).rejects.toThrow(new NotFoundError('Plan not found'));
     expect(findByIdSpy).toHaveBeenCalledWith(updateData.id);
     expect(findByIdSpy).toHaveBeenCalledTimes(1);
   });
@@ -35,7 +35,8 @@ describe('UpdatePlanUseCase', () => {
           'PLANO A',
           null,
           55.0,
-          15, null,
+          15,
+          null,
           'CONTROLE',
           new Date(),
           new Date(),
@@ -50,7 +51,8 @@ describe('UpdatePlanUseCase', () => {
           'PLANO A',
           null,
           55.0,
-          15, null,
+          15,
+          null,
           'CONTROLE',
           new Date(),
           new Date(),
@@ -61,7 +63,9 @@ describe('UpdatePlanUseCase', () => {
 
     const promise = sut.execute(updateData);
 
-    await expect(promise).rejects.toBeInstanceOf(ConflictError);
+    await expect(promise).rejects.toThrow(
+      new ConflictError('Plan name already exists'),
+    );
     expect(findByIdSpy).toHaveBeenCalledWith(updateData.id);
     expect(findByIdSpy).toHaveBeenCalledTimes(1);
     expect(findByNameSpy).toHaveBeenCalledWith(updateData.name);
@@ -74,7 +78,8 @@ describe('UpdatePlanUseCase', () => {
       'PLANO A',
       null,
       55.0,
-      15, null,
+      15,
+      null,
       'CONTROLE',
       new Date(),
       new Date(),
@@ -95,7 +100,8 @@ describe('UpdatePlanUseCase', () => {
       'Updated Plan',
       null,
       55.0,
-      15, null,
+      15,
+      null,
       'CONTROLE',
       new Date(),
       new Date(),
@@ -112,5 +118,82 @@ describe('UpdatePlanUseCase', () => {
     expect(updateSpy).toHaveBeenCalledWith(updateData.id, updateData);
     expect(result.name).toBe(updatedPlan.name);
     expect(result.id).toBe(updatedPlan.id);
+  });
+
+  it('should update the plan without checking name if name is not provided', async () => {
+    const existingPlan = new Plan(
+      '1',
+      'PLANO A',
+      null,
+      55.0,
+      15,
+      null,
+      'CONTROLE',
+      new Date(),
+      new Date(),
+    );
+    jest
+      .spyOn(planReposioryStub, 'findById')
+      .mockResolvedValueOnce(existingPlan);
+    const findByNameSpy = jest.spyOn(planReposioryStub, 'findByName');
+
+    const updateData = { id: '1', price: 99.0 };
+    const updatedPlan = new Plan(
+      '1',
+      'PLANO A',
+      null,
+      99.0,
+      15,
+      null,
+      'CONTROLE',
+      new Date(),
+      new Date(),
+    );
+    const updateSpy = jest
+      .spyOn(planReposioryStub, 'update')
+      .mockResolvedValueOnce(updatedPlan);
+
+    const result = await sut.execute(updateData);
+
+    expect(findByNameSpy).not.toHaveBeenCalled();
+    expect(updateSpy).toHaveBeenCalledWith(updateData.id, updateData);
+    expect(result.price).toBe(99.0);
+  });
+
+  it('should not throw ConflictError if the name belongs to the plan being updated', async () => {
+    const existingPlan = new Plan(
+      '1',
+      'PLANO A',
+      null,
+      55.0,
+      15,
+      null,
+      'CONTROLE',
+      new Date(),
+      new Date(),
+    );
+    jest
+      .spyOn(planReposioryStub, 'findById')
+      .mockResolvedValueOnce(existingPlan);
+    jest
+      .spyOn(planReposioryStub, 'findByName')
+      .mockResolvedValueOnce(existingPlan);
+
+    const updateData = { id: '1', name: 'PLANO A', price: 99.0 };
+    const updatedPlan = new Plan(
+      '1',
+      'PLANO A',
+      null,
+      99.0,
+      15,
+      null,
+      'CONTROLE',
+      new Date(),
+      new Date(),
+    );
+    jest.spyOn(planReposioryStub, 'update').mockResolvedValueOnce(updatedPlan);
+
+    const result = await sut.execute(updateData);
+    expect(result.price).toBe(99.0);
   });
 });

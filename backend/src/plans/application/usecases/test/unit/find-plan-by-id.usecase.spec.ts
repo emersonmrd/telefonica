@@ -22,7 +22,9 @@ describe('FindPlanByIdUseCase', () => {
 
     const promise = sut.execute(planId);
 
-    await expect(promise).rejects.toBeInstanceOf(NotFoundError);
+    await expect(promise).rejects.toThrow(
+      new NotFoundError('Plan with id 1 not found'),
+    );
     expect(findByIdSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -32,7 +34,8 @@ describe('FindPlanByIdUseCase', () => {
       'PLANO A',
       null,
       55.0,
-      15, null,
+      15,
+      null,
       'CONTROLE',
       new Date(),
       new Date(),

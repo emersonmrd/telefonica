@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1789413407228" clover="3.2.0">
+  <project timestamp="1789413407229" name="All files">
+    <metrics statements="84" coveredstatements="84" conditionals="24" coveredconditionals="24" methods="16" coveredmethods="16" elements="124" coveredelements="124" complexity="0" loc="84" ncloc="84" packages="4" files="9" classes="9"/>
+    <package name="plans.application.usecases">
+      <metrics statements="37" coveredstatements="37" conditionals="14" coveredconditionals="14" methods="10" coveredmethods="10"/>
+      <file name="create-plan.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\application\usecases\create-plan.usecase.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+      </file>
+      <file name="delete-plan.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\application\usecases\delete-plan.usecase.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="find-plan-by-id.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\application\usecases\find-plan-by-id.usecase.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+      <file name="list-plans.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\application\usecases\list-plans.usecase.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+      <file name="update-plan.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\application\usecases\update-plan.usecase.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="11" count="5" type="stmt"/>
+        <line num="12" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="plans.domain.entities">
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="plan.entity.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\plans\domain\entities\plan.entity.ts">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="6" count="13" type="stmt"/>
+        <line num="7" count="13" type="stmt"/>
+        <line num="8" count="13" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
+        <line num="10" count="13" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
+      </file>
+    </package>
+    <package name="users.application.usecases">
+      <metrics statements="29" coveredstatements="29" conditionals="10" coveredconditionals="10" methods="4" coveredmethods="4"/>
+      <file name="login.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\users\application\usecases\login.usecase.ts">
+        <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="17" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="30" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+      </file>
+      <file name="register-user.usecase.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\users\application\usecases\register-user.usecase.ts">
+        <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="users.domain.entities">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="user.entity.ts" path="C:\Users\emers\OneDrive\Documentos\cursos\repositorios\telefonica\backend\src\users\domain\entities\user.entity.ts">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

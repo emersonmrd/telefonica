@@ -21,7 +21,9 @@ describe('DeletePlanUseCase', () => {
 
     const promise = sut.execute(planId);
 
-    await expect(promise).rejects.toBeInstanceOf(NotFoundError);
+    await expect(promise).rejects.toThrow(
+      new NotFoundError('Plan with id non-existent-id not found'),
+    );
     expect(findByIdSpy).toHaveBeenCalledWith(planId);
     expect(findByIdSpy).toHaveBeenCalledTimes(1);
   });
@@ -32,7 +34,8 @@ describe('DeletePlanUseCase', () => {
       'PLANO A',
       null,
       55.0,
-      15, null,
+      15,
+      null,
       'CONTROLE',
       new Date(),
       new Date(),

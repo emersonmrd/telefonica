@@ -4,9 +4,12 @@ import request from 'supertest';
 
 describe('DeletePlan (e2e)', () => {
   let app: INestApplication;
+  let token: string;
 
   beforeEach(async () => {
-    app = await createTestApp();
+    const setup = await createTestApp();
+    app = setup.app;
+    token = setup.generateAuthToken();
   });
 
   afterEach(async () => {
@@ -14,13 +17,16 @@ describe('DeletePlan (e2e)', () => {
   });
 
   it('should delete a plan when a valid id is provided', async () => {
-    const planA = await request(app.getHttpServer()).post('/plans').send({
-      name: 'Plan A',
-      description: 'Plano criado pelo teste end-to-end',
-      price: 50.0,
-      dataAllowance: 10,
-      planType: 'CONTROLE',
-    });
+    const planA = await request(app.getHttpServer())
+      .post('/plans')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: 'Plan A',
+        description: 'Plano criado pelo teste end-to-end',
+        price: 50.0,
+        dataAllowance: 10,
+        planType: 'CONTROLE',
+      });
 
     const planId = planA.body.id;
 
