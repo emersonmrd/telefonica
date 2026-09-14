@@ -9,6 +9,7 @@ import {
   Max,
   MaxLength,
   Length,
+  ValidateIf,
 } from 'class-validator';
 
 export class CreatePlanDto {
@@ -27,12 +28,19 @@ export class CreatePlanDto {
   @Min(0, { message: 'O preço não pode ser negativo' })
   price!: number;
 
-  @IsNotEmpty()
+  @ValidateIf((o) => o.planType !== 'FIBRA')
+  @IsNotEmpty({ message: 'Franquia de dados é obrigatória para planos móveis' })
   @IsNumber()
   @IsPositive()
   @Min(1, { message: 'O limite de dados deve ser um valor positivo' })
   @Max(200, { message: 'O limite de dados deve ser menor do que 200' })
-  dataAllowance!: number;
+  dataAllowance?: number | null;
+
+  @ValidateIf((o) => o.planType === 'FIBRA')
+  @IsNotEmpty({ message: 'Velocidade é obrigatória para planos de fibra' })
+  @IsNumber()
+  @IsPositive()
+  speed?: number | null;
 
   @IsNotEmpty()
   @IsString()

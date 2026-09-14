@@ -4,8 +4,9 @@ export class Plan {
     public name: string,
     public description: string | null,
     public price: number,
-    public dataAllowance: number, // Quantidade de Gigabytes
-    public planType: string, // 'PRE', 'CONTROLE', 'POS'
+    public dataAllowance: number | null, // Gigabytes para planos móveis
+    public speed: number | null, // Mbps para planos de fibra
+    public planType: string, // 'PRE', 'CONTROLE', 'POS', 'FIBRA'
     public createdAt: Date,
     public updatedAt: Date,
   ) {}

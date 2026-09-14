@@ -9,6 +9,7 @@ import {
   Min,
   Length,
   MaxLength,
+  ValidateIf,
 } from 'class-validator';
 
 export class UpdatePlanDto {
@@ -24,19 +25,25 @@ export class UpdatePlanDto {
 
   @IsOptional()
   @IsNumber()
- 
   @Min(0, { message: 'O preço não pode ser negativo' })
   price?: number;
 
   @IsOptional()
+  @ValidateIf((o) => o.planType !== 'FIBRA')
   @IsNumber()
   @IsPositive()
   @Min(1, { message: 'O limite de dados deve ser um valor positivo' })
   @Max(200, { message: 'O limite de dados deve ser menor do que 200' })
-  dataAllowance?: number;
+  dataAllowance?: number | null;
+
+  @IsOptional()
+  @ValidateIf((o) => o.planType === 'FIBRA')
+  @IsNumber()
+  @IsPositive()
+  speed?: number | null;
 
   @IsOptional()
   @IsString()
-  @IsIn(['CONTROLE', 'POS', 'FIBRA','PRE'], { message: 'Tipo de plano inválido' })
+  @IsIn(['CONTROLE', 'POS', 'FIBRA', 'PRE'], { message: 'Tipo de plano inválido' })
   planType?: string;
 }

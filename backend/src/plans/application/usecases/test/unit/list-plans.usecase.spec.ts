@@ -21,7 +21,7 @@ describe('ListPlansUseCase', () => {
           'Vivo Controle 15GB',
           null,
           55.0,
-          15,
+          15, null,
           'CONTROLE',
           new Date(),
           new Date(),

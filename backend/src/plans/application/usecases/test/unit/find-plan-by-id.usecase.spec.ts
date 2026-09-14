@@ -32,7 +32,7 @@ describe('FindPlanByIdUseCase', () => {
       'PLANO A',
       null,
       55.0,
-      15,
+      15, null,
       'CONTROLE',
       new Date(),
       new Date(),

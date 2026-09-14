@@ -8,13 +8,14 @@ datasource db {
 }
 
 model Plan {
-  id            String   @id @default(uuid())
-  name          String   @unique // ex: Vivo Controle 15GB
-  description   String?  // Opcional
-  price         Float    // ex: 55.00
-  dataAllowance Int      // Quantidade de Gigas (ex: 15)
-  planType      String   // PRE, CONTROLE ou POS
-  
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id            String  @id @default(uuid())
+  name          String  @unique // ex: Vivo Controle 15GB
+  description   String? // Opcional
+  price         Float // ex: 55.00
+  dataAllowance Int? // Quantidade de Gigas (ex: 15) - Nulo se for FIBRA
+  speed         Int? // Velocidade em Mbps (ex: 300) - Nulo se for Mobile
+  planType      String // PRE, CONTROLE, POS ou FIBRA
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

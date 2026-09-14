@@ -44,7 +44,7 @@ describe('ListPlans (e2e)', () => {
         name: 'Plano FIBRA',
         description: 'Plano criado pelo teste end-to-end',
         price: 100.0,
-        dataAllowance: 150,
+        speed: 300,
         planType: 'FIBRA',
       }),
     ];

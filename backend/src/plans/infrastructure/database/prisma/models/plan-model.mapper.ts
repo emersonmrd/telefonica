@@ -9,6 +9,7 @@ export class PlanModelMapper {
       prismaPlan.description,
       prismaPlan.price,
       prismaPlan.dataAllowance,
+      prismaPlan.speed,
       prismaPlan.planType,
       prismaPlan.createdAt,
       prismaPlan.updatedAt,
@@ -21,6 +22,7 @@ export class PlanModelMapper {
       description: plan.description,
       price: plan.price,
       dataAllowance: plan.dataAllowance,
+      speed: plan.speed,
       planType: plan.planType,
     };
   }
